@@ -3,14 +3,41 @@ const btn = document.getElementById('addBtn');
 const list = document.getElementById('todoList');
 
 function addtask(task) {
+
+
     const li = document.createElement('li');
     if (input.value === '') return;
-    li.innerHTML= `<span>${task}</span> <button class="deleteBtn">Delete</button>`;
+    li.className = "flex items-center justify-between bg-white text-black p-4 mb-2 rounded-lg shadow text-xl";
+    li.innerHTML = `
+  <span class="task-text">${task}</span>
+  <div class="flex items-center gap-3">
+    <button class="deleteBtn bg-red-600 text-white p-2 rounded-lg">Delete</button>
+    <input type="checkbox" class="chek">
+  </div>
+`;
+
+
+    const checkbox = li.querySelector('.chek');
+    const taskText = li.querySelector('.task-text');
+
+    checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+            taskText.classList.add('line-through', 'text-gray-500');
+            li.classList.add('bg-gray-400');
+            li.classList.remove('bg-white');
+        } else {
+            taskText.classList.remove('line-through', 'text-gray-500');
+            li.classList.remove('bg-gray-400');
+            li.classList.add('bg-white');
+        }
+    });
+
 
     const deleteBtn = li.querySelector('.deleteBtn');
     deleteBtn.addEventListener('click', () => {
         list.removeChild(li);
     });
+
 
     list.appendChild(li);
     input.value = '';
