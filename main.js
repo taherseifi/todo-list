@@ -20,12 +20,10 @@ function addtask(task) {
     const taskText = li.querySelector('.task-text');
     checkbox.addEventListener('change', () => {
         if (checkbox.checked) {
-            taskText.classList.add('line-through', 'text-gray-500');
-            li.classList.add('bg-gray-400');
+            taskText.classList.add('line-through' , 'bg-gray-400');
             li.classList.remove('bg-white');
         } else {
-            taskText.classList.remove('line-through', 'text-gray-500');
-            li.classList.remove('bg-gray-400');
+            taskText.classList.remove('line-through', 'bg-gray-400');
             li.classList.add('bg-white');
         }
     });
