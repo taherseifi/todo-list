@@ -13,13 +13,11 @@ function addtask(task) {
   <div class="flex items-center gap-3">
     <button class="deleteBtn bg-red-600 text-white p-2 rounded-lg">Delete</button>
     <input type="checkbox" class="chek">
+    <button class="editTask cursor-move bg-yellow-500 text-black p-2 rounded-lg">Edit</button>
   </div>
-`;
-
-
+    `;
     const checkbox = li.querySelector('.chek');
     const taskText = li.querySelector('.task-text');
-
     checkbox.addEventListener('change', () => {
         if (checkbox.checked) {
             taskText.classList.add('line-through', 'text-gray-500');
@@ -32,16 +30,24 @@ function addtask(task) {
         }
     });
 
-
     const deleteBtn = li.querySelector('.deleteBtn');
     deleteBtn.addEventListener('click', () => {
         list.removeChild(li);
     });
 
+    const editTask = li.querySelector('.editTask');
+    editTask.addEventListener('click', () => {
+        const newTask = prompt('Edit your task:', taskText.textContent);    
+        if (newTask !== null && newTask.trim() !== '') {
+            taskText.textContent = newTask;
+        }
+    });
 
     list.appendChild(li);
     input.value = '';
-}   
+}  
+
+
 btn.addEventListener('click', () => {
     addtask(input.value);
 });
